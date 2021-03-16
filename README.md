@@ -68,6 +68,6 @@ Lo único que diferencia a estos dos es que en uno puedes hacer login en la barr
 ![Info](./picturesReadMe/info_P.png)
 
 #### Registrarse como usuario (Publico) ####
-![SignUp](./picturesReadMe/signUP.png)
+![SignUp](./picturesReadMe/signUp.png)
 
 
