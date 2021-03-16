@@ -1,0 +1,44 @@
+<meta charset="utf-8">
+{{>header_template}}
+<div class="grid-item grid-aside">
+	<div class="grid-item grid-main">
+		<article>
+			<section>
+				{{#menu}}
+				<div>
+					<img src="/image/{{imageName}}" height="200"></img>
+
+					<h3>{{name}}</h3>
+					<p>{{price}} &euro;</p>
+					{{#client}}
+					<form action="/product/addToCart/{{idClient}}/{{name}}"
+						method="post">
+						<input type="submit" value="Añadir al carrito">
+					</form>
+					{{/client}}
+				</div>
+				{{/menu}}
+			</section>
+		</article>
+	</div>
+	<div class="grid-item grid-aside">
+		<aside>
+			<h2>Por paises:</h2>
+			{{#client}} {{#categories}}
+			<ul>
+				<li><a href="/category/{{name}}/{{idClient}}">{{name}}</a></li>
+			</ul>
+
+			{{/categories}} {{/client}} {{^client}} {{#categories}}
+			<ul>
+				<li><a href="/category/{{name}}">{{name}}</a></li>
+			</ul>
+			{{/categories}} {{/client}}
+
+		</aside>
+	</div>
+</div>
+
+
+</body>
+</html>

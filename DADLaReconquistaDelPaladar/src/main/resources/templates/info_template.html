@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>La Reconquista</title>
+<meta charset="utf-8">
+</head>
+<body>
+	{{>header_template}}
+
+	<article>
+		<section>
+			<H2>Información del usuario</H2>
+			<p>
+				<b>Name: </b> {{client.firstName}}<br>
+				<b>Apellidos: </b> {{client.lastName}}<br>
+				<b>Años: </b> {{client.age}}<br>
+				<b>DNI: </b> {{client.dni}}<br>
+				<b>Email: </b> {{client.mail}}<br>
+				<b>Dirección: </b> {{client.address}}<br>
+				<b>Teléfono: </b> {{client.telephone}}<br>
+				
+			</p>
+			<form action="/">
+				<input type="submit" value="Salir">
+			</form>
+		</section>
+		<section>
+		<h3>Lista de tickets</h3>
+		{{#cart}}
+			<div>
+				<h1>{{name}}</h1>					
+			</div>	
+		{{/cart}}
+		{{^cart}}
+			<div>
+				<p><b>No dispone de ningún ticket</b></p>
+			</div>
+		{{/cart}}
+		</section>
+	</article>
+
+	<footer> </footer>
+
+</body>
+</html>
