@@ -33,8 +33,41 @@ Se desarrollará una aplicación web destinada a la venta de comida latinoameric
 ## Fase 2 <a name="id2"></a> ##
 
 ### Desarrollo en local ###
+#### Diagrama de Navegación ####
+![Diagrama de Navegación](./picturesReadMe/Diagrama_de_navecacion.png)
+
+#### Diagrama UML ####
+![Diagrama UML](./picturesReadMe/Diagrama_UML.png)
+
+#### Diagrama E/R ####
+![iagrama E/R](./picturesReadMe/Diagrama_E_R.png)
 
 #### Home Principal ####
-![Home](./pictures/Home.PNG)
+![Home](./picturesReadMe/Home.png)
+
+#### Home (Privado) ####
+![Home](./picturesReadMe/home_P.png)
+
+#### Menú (Público) ####
+![Home](./picturesReadMe/menu1.png)
+![Home](./picturesReadMe/menu2.png)
+
+#### Menú (Privado)####
+![Home](./picturesReadMe/menu_P.png)
+
+A diferencia del menú anterior. este dispone de un botón para poder añadirlo al carrito del usuario.
+
+#### Carrito (Privado) ####
+![Carrito](./picturesReadMe/cart_P.png)
+
+#### Contacto (Publico/Privado) ####
+![Contacto](./picturesReadMe/contacto.png)
+Lo único que diferencia a estos dos es que en uno puedes hacer login en la barra nav y en el otro aparece tu nombre de usuario
+
+#### Info (Privado) ####
+![Info](./picturesReadMe/info_P.png)
+
+#### Registrarse como usuario (Publico) ####
+![SignUp](./picturesReadMe/signUp.png)
 
 
