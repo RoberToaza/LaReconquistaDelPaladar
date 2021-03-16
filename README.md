@@ -35,6 +35,6 @@ Se desarrollará una aplicación web destinada a la venta de comida latinoameric
 ### Desarrollo en local ###
 
 #### Home Principal ####
-![Home](./pictures/Home.PNG)
+![Home](./picturesReadMe/Home.PNG)
 
 
