@@ -72,6 +72,10 @@ public class RestaurantController {
 		Ticket t1 = new Ticket(listProductos);
 		
 		ticketsRepository.save(t1);
+		
+		c1.getTickets().add(t1);
+		clientsRepository.save(c1);
+
 
 								
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.code.dad.web.model.Client;
 import es.urjc.code.dad.web.model.Product;
+import es.urjc.code.dad.web.model.Ticket;
 import es.urjc.code.dad.web.repository.ClientRepository;
 
 @Controller
@@ -64,9 +65,11 @@ public class ClientController {
 	public String newClient(Model model, @PathVariable long idClient) {
 		Client c = clientsRepository.findById(idClient);
 		List<Product> shoppingCart = c.getShoppingCar();
+		List<Ticket> tickets = c.getTickets();
 		
 		long id = c.getId();
 		
+		model.addAttribute("tickets", tickets);
 		model.addAttribute("client", c);
 		model.addAttribute("idClient", id);
 		model.addAttribute("cart",shoppingCart);

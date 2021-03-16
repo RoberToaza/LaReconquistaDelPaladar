@@ -26,16 +26,16 @@
 		</section>
 		<section>
 		<h3>Lista de tickets</h3>
-		{{#cart}}
+		{{#tickets}}
 			<div>
-				<h1>{{name}}</h1>					
+				<h1>{{id}}</h1>					
 			</div>	
-		{{/cart}}
-		{{^cart}}
+		{{/tickets}}
+		{{^tickets}}
 			<div>
 				<p><b>No dispone de ningún ticket</b></p>
 			</div>
-		{{/cart}}
+		{{/tickets}}
 		</section>
 	</article>
 
