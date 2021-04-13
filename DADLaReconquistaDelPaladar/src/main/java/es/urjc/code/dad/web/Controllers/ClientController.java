@@ -23,20 +23,20 @@ public class ClientController {
 	@Autowired
 	private ClientRepository clientsRepository;
 	
-	@PostMapping("/login")
-	public String logIn(Model model, @RequestParam String firstName, @RequestParam String password) {
-		Client c = clientsRepository.findByFirstNameAndPassword(firstName, password);
-		
-		if(c == null) {
-			return("home_template");
-		}
-		long id = c.getId();
-		
-		model.addAttribute("client", c);
-		model.addAttribute("idClient", id);
-
-		return "home_template";
-	}
+//	@PostMapping("/login")
+//	public String logIn(Model model, @RequestParam String firstName, @RequestParam String password) {
+//		Client c = clientsRepository.findByFirstNameAndPassword(firstName, password);
+//		
+//		if(c == null) {
+//			return("home_template");
+//		}
+//		long id = c.getId();
+//		
+//		model.addAttribute("client", c);
+//		model.addAttribute("idClient", id);
+//
+//		return "home_template";
+//	}
 	
 	@GetMapping("/signup")
 	public String newClient(Model model) {
