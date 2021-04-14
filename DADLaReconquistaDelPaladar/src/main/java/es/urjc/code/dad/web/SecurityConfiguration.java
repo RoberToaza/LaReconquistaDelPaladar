@@ -1,14 +1,20 @@
-package es.urjc.code.dad.web.Controllers;
+package es.urjc.code.dad.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
+import es.urjc.code.dad.web.repository.ClientRepositoryAuthenticationProvider;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	public ClientRepositoryAuthenticationProvider authenticationProvider;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
@@ -34,17 +40,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.logout().logoutUrl("/logout");
 		http.logout().logoutSuccessUrl("/");
 		
-		//Disable CSRF at the moment
-		http.csrf().disable();
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-		String encodedPassword = encoder.encode("pass");
-
-		auth.inMemoryAuthentication().withUser("user").password(encodedPassword).roles("USER");
+		auth.authenticationProvider(authenticationProvider);
 	}
 }

@@ -49,112 +49,112 @@ public class ProductController {
 		return"menu_template";
 	}
 	
-	@GetMapping("/menu/{idClient}")
-	public String showMenu(Model model, @PathVariable long idClient) {
-		Client c = clientsRepository.findById(idClient);
-		List<Product> menu = new ArrayList<>(productsRepository.findAll());
-		List<Category> categories = new ArrayList<>(categoriesRepository.findAll());
-		
-		long id = c.getId();
-		
-		model.addAttribute("client", c);
-		model.addAttribute("idClient", id);
-		model.addAttribute("categories", categories);
-		
-		
-		model.addAttribute("menu", menu);
-		
-		return"menu_template";
-	}
+//	@GetMapping("/menu/{idClient}")
+//	public String showMenu(Model model, @PathVariable long idClient) {
+//		Client c = clientsRepository.findById(idClient);
+//		List<Product> menu = new ArrayList<>(productsRepository.findAll());
+//		List<Category> categories = new ArrayList<>(categoriesRepository.findAll());
+//		
+//		long id = c.getId();
+//		
+//		model.addAttribute("client", c);
+//		model.addAttribute("idClient", id);
+//		model.addAttribute("categories", categories);
+//		
+//		
+//		model.addAttribute("menu", menu);
+//		
+//		return"menu_template";
+//	}
 	
-	@PostMapping("/addToCart/{idClient}/{name}")
-	public String addProduct(Model model, @PathVariable long idClient, @PathVariable String name ) {
-		Client c = clientsRepository.findById(idClient);
-		Product p = productsRepository.findByName(name);
+//	@PostMapping("/addToCart/{idClient}/{name}")
+//	public String addProduct(Model model, @PathVariable long idClient, @PathVariable String name ) {
+//		Client c = clientsRepository.findById(idClient);
+//		Product p = productsRepository.findByName(name);
+//	
+//		
+//		c.getShoppingCar().add(p);
+//		
+//		clientsRepository.save(c);
+//		
+//		long id = c.getId();
+//		
+//		List<Product> shoppingCart = c.getShoppingCar();
+//		
+//		model.addAttribute("canBuy", true);
+//		model.addAttribute("cart",shoppingCart);
+//		model.addAttribute("client", c);
+//		model.addAttribute("idClient", id);
+//		
+//		return"cart_template";
+//	}
 	
-		
-		c.getShoppingCar().add(p);
-		
-		clientsRepository.save(c);
-		
-		long id = c.getId();
-		
-		List<Product> shoppingCart = c.getShoppingCar();
-		
-		model.addAttribute("canBuy", true);
-		model.addAttribute("cart",shoppingCart);
-		model.addAttribute("client", c);
-		model.addAttribute("idClient", id);
-		
-		return"cart_template";
-	}
-	
-	@PostMapping("/delete/{idClient}/{name}")
-	public String deleteProduct(Model model, @PathVariable long idClient, @PathVariable String name ) {
-		Client c = clientsRepository.findById(idClient);
-		Product p = productsRepository.findByName(name);
-		
-		c.getShoppingCar().remove(p);
-		
-		clientsRepository.save(c);
-		
-		long id = c.getId();
-		
-		List<Product> shoppingCart = c.getShoppingCar();
-		
-		if(!c.getShoppingCar().isEmpty())
-			model.addAttribute("canBuy", true);
-		model.addAttribute("cart",shoppingCart);
-		model.addAttribute("client", c);
-		model.addAttribute("idClient", id);
-		
-		return"cart_template";
-	}
-	
+//	@PostMapping("/delete/{idClient}/{name}")
+//	public String deleteProduct(Model model, @PathVariable long idClient, @PathVariable String name ) {
+//		Client c = clientsRepository.findById(idClient);
+//		Product p = productsRepository.findByName(name);
+//		
+//		c.getShoppingCar().remove(p);
+//		
+//		clientsRepository.save(c);
+//		
+//		long id = c.getId();
+//		
+//		List<Product> shoppingCart = c.getShoppingCar();
+//		
+//		if(!c.getShoppingCar().isEmpty())
+//			model.addAttribute("canBuy", true);
+//		model.addAttribute("cart",shoppingCart);
+//		model.addAttribute("client", c);
+//		model.addAttribute("idClient", id);
+//		
+//		return"cart_template";
+//	}
+//	
+////	@PostMapping("/buy/{idClient}")
+////	public String buyCart(Model model, @PathVariable long idClient) {
+////		Client c = clientsRepository.findById(idClient);
+////		List<Product> list = c.getShoppingCar();
+////		Ticket ticketCart = new Ticket(c.getShoppingCar());
+////		
+////		c.getTickets().add(ticketCart);
+////		
+////		clientsRepository.save(c);
+////		
+////		long id = c.getId();
+////		
+////		model.addAttribute("client", c);
+////		model.addAttribute("idClient", id);
+////		
+////		return "info_template";
+////		
+////	}
+//	
 //	@PostMapping("/buy/{idClient}")
 //	public String buyCart(Model model, @PathVariable long idClient) {
 //		Client c = clientsRepository.findById(idClient);
-//		List<Product> list = c.getShoppingCar();
-//		Ticket ticketCart = new Ticket(c.getShoppingCar());
 //		
-//		c.getTickets().add(ticketCart);
-//		
-//		clientsRepository.save(c);
+//		if(c.getShoppingCar().size()>0) {
+//			List<Product> aux = new ArrayList<>(c.getShoppingCar());
+//			
+//			Ticket ticketCart = new Ticket(aux);
+//			ticketsRepository.save(ticketCart);
+//			
+//			c.setShoppingCar(new ArrayList<Product>());
+//			
+//			c.getTickets().add(ticketCart);
+//			
+//			clientsRepository.save(c);
+//		}
 //		
 //		long id = c.getId();
 //		
 //		model.addAttribute("client", c);
 //		model.addAttribute("idClient", id);
 //		
-//		return "info_template";
+//		return "cart_template";
 //		
 //	}
-	
-	@PostMapping("/buy/{idClient}")
-	public String buyCart(Model model, @PathVariable long idClient) {
-		Client c = clientsRepository.findById(idClient);
-		
-		if(c.getShoppingCar().size()>0) {
-			List<Product> aux = new ArrayList<>(c.getShoppingCar());
-			
-			Ticket ticketCart = new Ticket(aux);
-			ticketsRepository.save(ticketCart);
-			
-			c.setShoppingCar(new ArrayList<Product>());
-			
-			c.getTickets().add(ticketCart);
-			
-			clientsRepository.save(c);
-		}
-		
-		long id = c.getId();
-		
-		model.addAttribute("client", c);
-		model.addAttribute("idClient", id);
-		
-		return "cart_template";
-		
-	}
 	
 
 }

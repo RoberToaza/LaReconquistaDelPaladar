@@ -25,7 +25,7 @@ public class Client {
 	private String mail;
 	private int telephone;
 	private String address;
-	private String password;
+	private String passwordHash;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Product> shoppingCart;
@@ -44,7 +44,7 @@ public class Client {
 		this.mail = c.getMail();
 		this.telephone = c.getTelephone();
 		this.address = c.getAddress();
-		this.password = c.getPassword();
+		this.passwordHash = c.getPasswordHash();
 		this.tickets = new ArrayList<>();
 		this.shoppingCart = new ArrayList<>();
 		
@@ -60,7 +60,7 @@ public class Client {
 		this.mail = mail;
 		this.telephone = telephone;
 		this.address = address;
-		this.password = password;
+		this.passwordHash = password;
 		this.tickets = new ArrayList<>();
 		this.shoppingCart = new ArrayList<>();
 	}
@@ -154,14 +154,14 @@ public class Client {
 
 
 
-	public String getPassword() {
-		return password;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
 
 
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.passwordHash = password;
 	}
 
 

@@ -86,52 +86,52 @@ public class RestaurantController {
 		return "home_template";
 	}
 
-	@GetMapping("/{idClient}")
-	public String showHomeWithClient(Model model, @PathVariable long idClient) {
-		
-		Client c = clientsRepository.findById(idClient);
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
-		
-		return "home_template";
-	}
-	
-	@GetMapping("/contacto")
-	public String showContacto() {
-
-		return "contact_template";
-	}
-	
-	@GetMapping("/contacto/{idClient}")
-	public String showContactoWithClient(Model model, @PathVariable long idClient) {
-		
-		Client c = clientsRepository.findById(idClient);
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
-
-		return "contact_template";
-	}
-	
-	@GetMapping("/cart/{idClient}")
-	public String showCarrito(Model model , @PathVariable long idClient) {
-		Client c = clientsRepository.findById(idClient);
-
-		List<Product> shoppingCart = c.getShoppingCar();
-		
-		if(shoppingCart.isEmpty()){
-			model.addAttribute("canBuy", false);
-		}else {
-			model.addAttribute("canBuy", true);
-		}
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
-		model.addAttribute("cart", shoppingCart);
-		
-		return "cart_template";
-	}
+//	@GetMapping("/{idClient}")
+//	public String showHomeWithClient(Model model, @PathVariable long idClient) {
+//		
+//		Client c = clientsRepository.findById(idClient);
+//		
+//		model.addAttribute("idClient", idClient);
+//		model.addAttribute(c);
+//		
+//		return "home_template";
+//	}
+//	
+//	@GetMapping("/contacto")
+//	public String showContacto() {
+//
+//		return "contact_template";
+//	}
+//	
+//	@GetMapping("/contacto/{idClient}")
+//	public String showContactoWithClient(Model model, @PathVariable long idClient) {
+//		
+//		Client c = clientsRepository.findById(idClient);
+//		
+//		model.addAttribute("idClient", idClient);
+//		model.addAttribute(c);
+//
+//		return "contact_template";
+//	}
+//	
+//	@GetMapping("/cart/{idClient}")
+//	public String showCarrito(Model model , @PathVariable long idClient) {
+//		Client c = clientsRepository.findById(idClient);
+//
+//		List<Product> shoppingCart = c.getShoppingCar();
+//		
+//		if(shoppingCart.isEmpty()){
+//			model.addAttribute("canBuy", false);
+//		}else {
+//			model.addAttribute("canBuy", true);
+//		}
+//		
+//		model.addAttribute("idClient", idClient);
+//		model.addAttribute(c);
+//		model.addAttribute("cart", shoppingCart);
+//		
+//		return "cart_template";
+//	}
 
 
 }

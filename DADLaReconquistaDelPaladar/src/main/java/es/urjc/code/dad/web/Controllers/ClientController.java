@@ -61,20 +61,20 @@ public class ClientController {
 		return "home_template";
 	}
 	
-	@GetMapping("/info/{idClient}")
-	public String newClient(Model model, @PathVariable long idClient) {
-		Client c = clientsRepository.findById(idClient);
-		List<Product> shoppingCart = c.getShoppingCar();
-		List<Ticket> tickets = c.getTickets();
-		
-		long id = c.getId();
-		
-		model.addAttribute("tickets", tickets);
-		model.addAttribute("client", c);
-		model.addAttribute("idClient", id);
-		model.addAttribute("cart",shoppingCart);
-		
-		return "info_template";
-	}
+//	@GetMapping("/info/{idClient}")
+//	public String newClient(Model model, @PathVariable long idClient) {
+//		Client c = clientsRepository.findById(idClient);
+//		List<Product> shoppingCart = c.getShoppingCar();
+//		List<Ticket> tickets = c.getTickets();
+//		
+//		long id = c.getId();
+//		
+//		model.addAttribute("tickets", tickets);
+//		model.addAttribute("client", c);
+//		model.addAttribute("idClient", id);
+//		model.addAttribute("cart",shoppingCart);
+//		
+//		return "info_template";
+//	}
 
 }
