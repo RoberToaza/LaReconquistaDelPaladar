@@ -30,7 +30,7 @@ public class Product {
 		this.imageName = imageName;
 	}
 	
-	protected Product() {}
+	public Product() {}
 	
 	public Product(Product p) {
 		this.name = p.getName();
@@ -79,6 +79,14 @@ public class Product {
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	
+	public boolean outOfStock() {
+		return this.stock == 0;
+	}
+	
+	public void subtractStock(int a) {
+		this.stock -= a;
 	}
 	
 	

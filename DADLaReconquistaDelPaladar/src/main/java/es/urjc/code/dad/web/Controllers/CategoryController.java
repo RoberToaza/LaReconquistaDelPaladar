@@ -20,11 +20,6 @@ import es.urjc.code.dad.web.repository.ClientRepository;
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
-
-	
-	@Autowired
-	private ClientRepository clientsRepository;
-
 	
 	@Autowired 
 	private CategoryRepository categoriesRepository;
@@ -43,23 +38,23 @@ public class CategoryController {
 		return"menu_template";
 	}
 	
-	@GetMapping("/{name}/{idClient}")
-	public String showByCategory(Model model, @PathVariable String name, @PathVariable long idClient) {
-		Client c = clientsRepository.findById(idClient);
-		Category category =categoriesRepository.findByName(name);
-		List<Product> menu = new ArrayList<>(category.getProducts());
-		List<Category> categories = new ArrayList<>(categoriesRepository.findAll());
-		
-		long id = c.getId();
-		
-		model.addAttribute("client", c);
-		model.addAttribute("idClient", id);
-		model.addAttribute("categories", categories);
-		
-		
-		model.addAttribute("menu", menu);
-		
-		return"menu_template";
-	}
+//	@GetMapping("/{name}/{idClient}")
+//	public String showByCategory(Model model, @PathVariable String name, @PathVariable long idClient) {
+//		Client c = clientsRepository.findById(idClient);
+//		Category category =categoriesRepository.findByName(name);
+//		List<Product> menu = new ArrayList<>(category.getProducts());
+//		List<Category> categories = new ArrayList<>(categoriesRepository.findAll());
+//		
+//		long id = c.getId();
+//		
+//		model.addAttribute("client", c);
+//		model.addAttribute("idClient", id);
+//		model.addAttribute("categories", categories);
+//		
+//		
+//		model.addAttribute("menu", menu);
+//		
+//		return"menu_template";
+//	}
 
 }

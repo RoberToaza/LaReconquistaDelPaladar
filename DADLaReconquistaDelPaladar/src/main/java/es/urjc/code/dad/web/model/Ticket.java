@@ -22,11 +22,11 @@ public class Ticket {
 //	private Client client;
 
 	@OneToMany
-	private List<Product> products;
+	private List<SoldProduct> products = new ArrayList<>();
 	
-	protected Ticket() {}
+	public Ticket() {}
 	
-	public Ticket(List<Product> l) {
+	public Ticket(List<SoldProduct> l) {
 		super();
 		this.products = new ArrayList<>(l);
 	}
@@ -40,11 +40,11 @@ public class Ticket {
 		return id;
 	}
 
-	public List<Product> getProducts() {
+	public List<SoldProduct> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(List<SoldProduct> products) {
 		this.products = products;
 	}
 	

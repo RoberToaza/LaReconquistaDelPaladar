@@ -27,8 +27,6 @@ public class Client {
 	private String address;
 	private String password;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Product> shoppingCart;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Ticket> tickets;
@@ -46,7 +44,6 @@ public class Client {
 		this.address = c.getAddress();
 		this.password = c.getPassword();
 		this.tickets = new ArrayList<>();
-		this.shoppingCart = new ArrayList<>();
 		
 	}
 
@@ -62,7 +59,6 @@ public class Client {
 		this.address = address;
 		this.password = password;
 		this.tickets = new ArrayList<>();
-		this.shoppingCart = new ArrayList<>();
 	}
 	
 	public long getId() {
@@ -177,16 +173,6 @@ public class Client {
 	}
 
 
-
-	public List<Product> getShoppingCar() {
-		return shoppingCart;
-	}
-
-
-
-	public void setShoppingCar(List<Product> shoppingCar) {
-		this.shoppingCart = shoppingCar;
-	}
 	
 	
 //	public void addTickets(Ticket ticket) {
