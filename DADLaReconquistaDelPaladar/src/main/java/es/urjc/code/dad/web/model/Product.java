@@ -17,7 +17,11 @@ public class Product {
 	private String name;
 	private double price;
 	private int stock;
+	
+	private String country;	
+	
 	private String imageName;
+	
 	public String getImageName() {
 		return imageName;
 	}
@@ -25,9 +29,6 @@ public class Product {
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
-	private String country;
-	//private Map<String, String> info;
-	
 	
 	protected Product() {}
 	

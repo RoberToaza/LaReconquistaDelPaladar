@@ -1,13 +1,12 @@
 package es.urjc.code.dad.web.repository;
 
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import es.urjc.code.dad.web.model.Product;
 
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends CrudRepository<Product, Long> {
 	
 	List<Product> findAll();
 	
