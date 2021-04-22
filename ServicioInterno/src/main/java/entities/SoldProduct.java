@@ -1,4 +1,4 @@
-package es.urjc.code.dad.web.model;
+package entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

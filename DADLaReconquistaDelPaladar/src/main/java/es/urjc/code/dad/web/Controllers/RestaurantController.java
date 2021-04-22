@@ -78,7 +78,6 @@ public class RestaurantController {
 		
 		soldProductsRepository.save(sp1);
 		
-		c1.getTickets().add(t1);
 		clientsRepository.save(c1);
 								
 	}

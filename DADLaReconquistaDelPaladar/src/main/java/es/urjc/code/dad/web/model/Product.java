@@ -12,7 +12,7 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	
 	private String name;
 	private double price;
@@ -58,7 +58,7 @@ public class Product {
 		this.country = country;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	

@@ -21,7 +21,7 @@ public class ClientController {
 	
 	@PostMapping("/login2")
 	public String logIn(Model model, @RequestParam String firstName, @RequestParam String password) {
-		Client c = clientsRepository.findByFirstNameAndPassword(firstName, password);
+		Client c = clientsRepository.findByFirstNameAndPasswordHash(firstName, password);
 		
 		if(c == null) {
 			return("home_template");
@@ -54,7 +54,7 @@ public class ClientController {
 		
 		model.addAttribute("idClient", id);
 		
-		return "home_template";
+		return "login_template";
 	}
 	
 //	@GetMapping("/info/{idClient}")

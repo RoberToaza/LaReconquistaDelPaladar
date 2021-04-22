@@ -1,18 +1,11 @@
-package es.urjc.code.dad.web.model;
+package entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class Client {
@@ -28,22 +21,8 @@ public class Client {
 	private String dni;
 	private String mail;
 	private int telephone;
-	private String address;
-	private String passwordHash;
+	private String address;	
 	
-	
-	@ElementCollection(fetch = FetchType.EAGER)
-	private List<String> roles = new ArrayList<String>();
-	
-	
-	public List<String> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
-
 	protected Client() {}
 	
 	public Client(Client c) {
@@ -54,13 +33,10 @@ public class Client {
 		this.mail = c.getMail();
 		this.telephone = c.getTelephone();
 		this.address = c.getAddress();
-		this.passwordHash = new BCryptPasswordEncoder().encode(c.getPasswordHash());
-		roles.add("CLIENT");
-		
+	
 	}
-
-	public Client(String firstName, String lastName, int age, String dni, String mail, int telephone, String address,
-			String password) {
+	
+	public Client(String firstName, String lastName, int age, String dni, String mail, int telephone, String address) {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -69,9 +45,9 @@ public class Client {
 		this.mail = mail;
 		this.telephone = telephone;
 		this.address = address;
-		this.passwordHash = new BCryptPasswordEncoder().encode(password);
-		roles.add("CLIENT");
+
 	}
+	
 	
 	public int getId() {
 		return id;
@@ -159,20 +135,6 @@ public class Client {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-
-	public String getPasswordHash() {
-		return passwordHash;
-	}
-
-
-
-	public void setPasswordHash(String password) {
-		this.passwordHash = password;
-	}
-
-	
 	
 
 }
