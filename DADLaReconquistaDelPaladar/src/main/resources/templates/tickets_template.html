@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+{{>header_template}}
+<article>
+	<section>
+		{{#tickets}}
+		<div>
+			<h1>{{id}}</h1>
+
+		</div>
+		{{/tickets}}
+		 {{^tickets}}
+		<div>
+			<h1>No hay Tickets</h1>
+			
+		</div>
+		{{/tickets}}
+
+	</section>
+
+</article>
+
+
+<footer> </footer>
+</body>
+</html>

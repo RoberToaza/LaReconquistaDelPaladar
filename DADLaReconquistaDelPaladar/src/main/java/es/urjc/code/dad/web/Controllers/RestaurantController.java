@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import es.urjc.code.dad.web.model.Category;
 import es.urjc.code.dad.web.model.Client;
 import es.urjc.code.dad.web.model.Product;
+import es.urjc.code.dad.web.model.SoldProduct;
 import es.urjc.code.dad.web.model.Ticket;
 import es.urjc.code.dad.web.repository.CategoryRepository;
 import es.urjc.code.dad.web.repository.ClientRepository;
 import es.urjc.code.dad.web.repository.ProductRepository;
+import es.urjc.code.dad.web.repository.SoldProductRepository;
 import es.urjc.code.dad.web.repository.TicketRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class RestaurantController {
@@ -37,6 +36,9 @@ public class RestaurantController {
 
 	@Autowired
 	private ProductRepository productsRepository;
+	
+	@Autowired
+	private SoldProductRepository soldProductsRepository;
 
 	@PostConstruct
 	public void init() {
@@ -65,18 +67,18 @@ public class RestaurantController {
 		
 		clientsRepository.save(c1);
 		
-		List<Product> listProductos = new ArrayList<>();
-		listProductos.add(p1);
-		listProductos.add(p2);
+//		List<Product> listProductos = new ArrayList<>();
+//		listProductos.add(p1);
+//		listProductos.add(p2);
 		
-		Ticket t1 = new Ticket(listProductos);
+		Ticket t1 = ticketsRepository.save(new Ticket());
 		
-		ticketsRepository.save(t1);
 		
-		c1.getTickets().add(t1);
+		SoldProduct sp1 = new SoldProduct("Aguacate", 3, 2, t1);
+		
+		soldProductsRepository.save(sp1);
+		
 		clientsRepository.save(c1);
-
-
 								
 	}
 	
@@ -114,24 +116,24 @@ public class RestaurantController {
 		return "contact_template";
 	}
 	
-	@GetMapping("/cart/{idClient}")
-	public String showCarrito(Model model , @PathVariable long idClient) {
-		Client c = clientsRepository.findById(idClient);
-
-		List<Product> shoppingCart = c.getShoppingCar();
-		
-		if(shoppingCart.isEmpty()){
-			model.addAttribute("canBuy", false);
-		}else {
-			model.addAttribute("canBuy", true);
-		}
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
-		model.addAttribute("cart", shoppingCart);
-		
-		return "cart_template";
-	}
+//	@GetMapping("/cart/{idClient}")
+//	public String showCarrito(Model model , @PathVariable long idClient) {
+//		Client c = clientsRepository.findById(idClient);
+//
+//		List<Product> shoppingCart = c.getShoppingCar();
+//		
+//		if(shoppingCart.isEmpty()){
+//			model.addAttribute("canBuy", false);
+//		}else {
+//			model.addAttribute("canBuy", true);
+//		}
+//		
+//		model.addAttribute("idClient", idClient);
+//		model.addAttribute(c);
+//		model.addAttribute("cart", shoppingCart);
+//		
+//		return "cart_template";
+//	}
 
 
 }

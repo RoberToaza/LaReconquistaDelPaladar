@@ -9,7 +9,12 @@
 					<img src="/image/{{imageName}}" height="200"></img>
 
 					<h3>{{name}}</h3>
+					<h3>{{stock}}</h3>
 					<p>{{price}} &euro;</p>
+					<form action="/addToCart/{{name}}"
+						method="post">
+						<input type="submit" value="Añadir al carrito">
+					</form>
 					{{#client}}
 					<form action="/product/addToCart/{{idClient}}/{{name}}"
 						method="post">

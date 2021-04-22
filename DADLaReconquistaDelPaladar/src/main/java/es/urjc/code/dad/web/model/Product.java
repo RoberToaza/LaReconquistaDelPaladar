@@ -12,12 +12,16 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	
 	private String name;
 	private double price;
 	private int stock;
+	
+	private String country;	
+	
 	private String imageName;
+	
 	public String getImageName() {
 		return imageName;
 	}
@@ -25,11 +29,8 @@ public class Product {
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
-	private String country;
-	//private Map<String, String> info;
 	
-	
-	protected Product() {}
+	public Product() {}
 	
 	public Product(Product p) {
 		this.name = p.getName();
@@ -57,7 +58,7 @@ public class Product {
 		this.country = country;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	
@@ -78,6 +79,14 @@ public class Product {
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	
+	public boolean outOfStock() {
+		return this.stock == 0;
+	}
+	
+	public void subtractStock(int a) {
+		this.stock -= a;
 	}
 	
 	
