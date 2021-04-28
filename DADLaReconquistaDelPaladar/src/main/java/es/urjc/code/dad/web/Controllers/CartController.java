@@ -7,15 +7,19 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.urjc.code.dad.web.model.Client;
+import es.urjc.code.dad.web.model.EmailBody;
 import es.urjc.code.dad.web.model.Product;
 import es.urjc.code.dad.web.model.ProductInCart;
 import es.urjc.code.dad.web.model.SoldProduct;
@@ -143,44 +147,65 @@ public class CartController {
 		
 	}
 	
-//	@PostMapping("/buyCart")
-//	public String buyProducts(HttpServletRequest request) {
-//		
-//		Principal currentUser = request.getUserPrincipal();
-//		Client currentClient;
-//		
-//		try {
-//			currentClient = clientsRepository.findByFirstName(currentUser.getName());
-//		} catch (Exception e) {
-//			return "redirect:/dbError";
-//		}
-//		
-//		ArrayList<ProductInCart> cart = this.getCart(request);
-//		if((cart == null) || cart.size() <= 0){
-//			return "redirect:/";
-//		}
-//		
-//		Ticket t = ticketsRepository.save(new Ticket());
-//		
-//		for(ProductInCart p: cart) {
-//			Product pDB = productsRepository.findByName(p.getName());
-//			
-//			pDB.subtractStock(p.getAmount());
-//			
-//			productsRepository.save(pDB);
-//			
-//			SoldProduct soldP = new SoldProduct(p.getName(), p.getPrice(), p.getAmount(), t);
-//			
-//			soldProductsRepository.save(soldP);
-//		}
-//		
-//		this.emptyCart(request);
-//		
-//		System.out.println("Exito");
-//		
-//		return "redirect:/";
-//		
-//	}
+	@PostMapping("/buyCartAndSendEmail")
+	public String buyProductsAndSendEmail(HttpServletRequest request) {
+		
+		Principal currentUser = request.getUserPrincipal();
+		Client currentClient= clientsRepository.findByFirstName(currentUser.getName());
+
+		
+		ArrayList<ProductInCart> cart = this.getCart(request);
+		if((cart == null) || cart.size() <= 0){
+			return "redirect:/";
+		}
+		
+		List<SoldProduct> auxL = new ArrayList<>();
+		Ticket t = ticketsRepository.save(new Ticket());
+		
+		for(ProductInCart p: cart) {
+			Product pDB = productsRepository.findByName(p.getName());
+			
+			pDB.subtractStock(p.getAmount());
+			
+			productsRepository.save(pDB);
+			
+			SoldProduct soldP = new SoldProduct(p.getName(), p.getPrice(), p.getAmount(), t);
+			
+			soldProductsRepository.save(soldP);
+			auxL.add(soldP);
+		}
+		
+		t.setProducts(auxL);
+		t.setClient(currentClient);
+				
+		ticketsRepository.save(t);
+		
+		this.emptyCart(request);
+		
+//		String email = "robertoaza@hotmail.com";
+//		RestTemplate restTemplate = new RestTemplate();
+//		String url = "http://127.0.0.1:8080/sendEmail/"+ t.getId();
+//		ResponseEntity<Boolean> response = restTemplate.postForEntity(url,email, Boolean.class);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		HttpEntity<EmailBody> mailBody = new HttpEntity<>(new EmailBody("robertoaza@hotmail.com","A sido un exito","Factura Generada"));
+		ResponseEntity<String> enviar = restTemplate.postForEntity("http://localhost:8080/email/send", mailBody, String.class);
+		
+		return "redirect:/tickets";
+		
+	}
+	
+	@GetMapping("/sendEmail")
+	public String pruebita(Model model) {
+		RestTemplate restTemplate = new RestTemplate();
+		HttpEntity<EmailBody> mailBody = new HttpEntity<>(new EmailBody("robertoaza@hotmail.com","A sido un exito","Factura Generada"));
+		ResponseEntity<String> enviar = restTemplate.postForEntity("http://localhost:8080/email/send", mailBody, String.class);
+		
+		return"redirect:/tickets";
+	}
+	
+	
+	
 	
 	private ArrayList<ProductInCart> getCart(HttpServletRequest request){
 		ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>)request.getSession().getAttribute("cart");

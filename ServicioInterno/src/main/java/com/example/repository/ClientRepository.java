@@ -1,13 +1,13 @@
-package es.urjc.code.dad.web.repository;
+package com.example.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import entities.Client;
+import com.example.entities.Client;
 
 import java.util.List;
 
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface ClientRepository extends JpaRepository<Client, Integer> {
 	
 	List<Client> findByLastName(String lastName);
 	

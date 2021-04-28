@@ -1,8 +1,8 @@
-package es.urjc.code.dad.web.repository;
+package com.example.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import entities.SoldProduct;
+import com.example.entities.SoldProduct;
 
 public interface SoldProductRepository extends CrudRepository<SoldProduct, Integer>{
 
