@@ -1,10 +1,13 @@
 package es.urjc.code.dad.web.Controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import es.urjc.code.dad.web.model.Client;
 import es.urjc.code.dad.web.model.Product;
 import es.urjc.code.dad.web.model.ProductInCart;
 import es.urjc.code.dad.web.model.SoldProduct;
 import es.urjc.code.dad.web.model.Ticket;
+import es.urjc.code.dad.web.repository.ClientRepository;
 import es.urjc.code.dad.web.repository.ProductRepository;
 import es.urjc.code.dad.web.repository.SoldProductRepository;
 import es.urjc.code.dad.web.repository.TicketRepository;
@@ -31,15 +36,21 @@ public class CartController {
 	
 	@Autowired
 	private SoldProductRepository soldProductsRepository;
+	
+	@Autowired
+	private ClientRepository clientsRepository;
 
 	@GetMapping("/cart")
-	public String showMenu(Model model, HttpServletRequest request) {
+	public String showMenu(Model model, HttpServletRequest request) {		
 		model.addAttribute("product", new Product());
-		float total = 0;
+		double total = 0;
 		ArrayList<ProductInCart> cart = this.getCart(request);
 		
 		for(ProductInCart p : cart)
 			total += p.getTotal();
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 		
 		model.addAttribute("cart", cart);
 		model.addAttribute("total", total);
@@ -84,13 +95,26 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
+	
+	
 	@PostMapping("/buyCart")
 	public String buyProducts(HttpServletRequest request) {
+		
+		Principal currentUser = request.getUserPrincipal();
+		Client currentClient;
+		
+		try {
+			currentClient = clientsRepository.findByFirstName(currentUser.getName());
+		} catch (Exception e) {
+			return "redirect:/dbError";
+		}
+		
 		ArrayList<ProductInCart> cart = this.getCart(request);
 		if((cart == null) || cart.size() <= 0){
 			return "redirect:/";
 		}
 		
+		List<SoldProduct> auxL = new ArrayList<>();
 		Ticket t = ticketsRepository.save(new Ticket());
 		
 		for(ProductInCart p: cart) {
@@ -103,7 +127,13 @@ public class CartController {
 			SoldProduct soldP = new SoldProduct(p.getName(), p.getPrice(), p.getAmount(), t);
 			
 			soldProductsRepository.save(soldP);
+			auxL.add(soldP);
 		}
+		
+		t.setProducts(auxL);
+		t.setClient(currentClient);
+				
+		ticketsRepository.save(t);
 		
 		this.emptyCart(request);
 		
@@ -112,6 +142,45 @@ public class CartController {
 		return "redirect:/";
 		
 	}
+	
+//	@PostMapping("/buyCart")
+//	public String buyProducts(HttpServletRequest request) {
+//		
+//		Principal currentUser = request.getUserPrincipal();
+//		Client currentClient;
+//		
+//		try {
+//			currentClient = clientsRepository.findByFirstName(currentUser.getName());
+//		} catch (Exception e) {
+//			return "redirect:/dbError";
+//		}
+//		
+//		ArrayList<ProductInCart> cart = this.getCart(request);
+//		if((cart == null) || cart.size() <= 0){
+//			return "redirect:/";
+//		}
+//		
+//		Ticket t = ticketsRepository.save(new Ticket());
+//		
+//		for(ProductInCart p: cart) {
+//			Product pDB = productsRepository.findByName(p.getName());
+//			
+//			pDB.subtractStock(p.getAmount());
+//			
+//			productsRepository.save(pDB);
+//			
+//			SoldProduct soldP = new SoldProduct(p.getName(), p.getPrice(), p.getAmount(), t);
+//			
+//			soldProductsRepository.save(soldP);
+//		}
+//		
+//		this.emptyCart(request);
+//		
+//		System.out.println("Exito");
+//		
+//		return "redirect:/";
+//		
+//	}
 	
 	private ArrayList<ProductInCart> getCart(HttpServletRequest request){
 		ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>)request.getSession().getAttribute("cart");

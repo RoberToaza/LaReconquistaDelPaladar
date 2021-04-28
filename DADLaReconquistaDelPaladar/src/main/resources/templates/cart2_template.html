@@ -8,6 +8,7 @@
 			<h5>{{amount}}</h5>
 			<form action="/deleteFromCart/{{-index}}" method="post">
 				<input type="submit" value="Eliminar">
+				<input type="hidden" name="_csrf" value="{{token}}"/>
 			</form>
 
 
@@ -18,6 +19,7 @@
 		 </p>
 		 <form action="/buyCart" method="post">
 				<input type="submit" value="Comprar">
+				<input type="hidden" name="_csrf" value="{{token}}"/>
 				</form>
 		 {{^cart}}
 		<div>

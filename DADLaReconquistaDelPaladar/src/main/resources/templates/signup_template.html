@@ -9,16 +9,17 @@
 	
 	<article>
 		<section>
-			<form method="post" action="new">
+			<form method="post" action="/client/new">
 				<input type="text" placeholder="Nombre" name="firstName" required>
 				<input type="text" placeholder="Apellido" name="lastName" required>
-				<input type="password" placeholder="Contraseña" name="password" required>
+				<input type="password" placeholder="Contraseña" name="passwordHash" required>
 				<input type="number" placeholder="Años" name="age" required>
 				<input type="text" placeholder="DNI" name="dni" required>
 				<input type="email" placeholder="Correo" name="mail" required>
 				<input type="text" placeholder="Dirección" name="address" required>
 				<input type="number" placeholder="Teléfono" name="telephone" required>
 				<input type="submit">
+				<input type="hidden" name="_csrf" value="{{token}}"/>
 			</form>
 		</section>
 	</article>

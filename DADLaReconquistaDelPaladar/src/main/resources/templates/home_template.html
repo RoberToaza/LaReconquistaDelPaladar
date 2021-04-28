@@ -7,6 +7,10 @@
 			{{/client}} 
 			{{^client}}
 			<h1>Bienvenid@s</h1>
+			<form action="/logout" method="post">
+				<input type="submit" value="Sign Out" />
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 			{{/client}}
 		</section>
 	</article>

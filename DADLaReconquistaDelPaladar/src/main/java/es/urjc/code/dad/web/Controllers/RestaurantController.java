@@ -4,8 +4,10 @@ package es.urjc.code.dad.web.Controllers;
 
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,13 +85,16 @@ public class RestaurantController {
 	}
 	
 	@GetMapping("/")
-	public String showHome(Model model) {
+	public String showHome(Model model, HttpServletRequest request) {
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
 		
 		return "home_template";
 	}
 
 	@GetMapping("/{idClient}")
-	public String showHomeWithClient(Model model, @PathVariable long idClient) {
+	public String showHomeWithClient(Model model, @PathVariable int idClient) {
 		
 		Client c = clientsRepository.findById(idClient);
 		
@@ -106,7 +111,7 @@ public class RestaurantController {
 	}
 	
 	@GetMapping("/contacto/{idClient}")
-	public String showContactoWithClient(Model model, @PathVariable long idClient) {
+	public String showContactoWithClient(Model model, @PathVariable int idClient) {
 		
 		Client c = clientsRepository.findById(idClient);
 		
