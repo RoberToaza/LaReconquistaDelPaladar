@@ -1,4 +1,4 @@
-package com.example.RestController;
+package com.example.demo;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.entities.Ticket;
-import com.example.repository.TicketRepository;
 import com.itextpdf.text.DocumentException;
 
 @RestController
