@@ -189,12 +189,6 @@ public class CartController {
 		String url = "http://127.0.0.1:8080/sendEmail/"+ t.getId();
 		ResponseEntity<Boolean> response = restTemplate.postForEntity(url,email, Boolean.class);
 		
-		
-		//Servicio 2
-//		RestTemplate restTemplate = new RestTemplate();
-//		HttpEntity<EmailBody> mailBody = new HttpEntity<>(new EmailBody("robertoaza@hotmail.com","A sido un exito","Factura Generada"));
-//		ResponseEntity<String> enviar = restTemplate.postForEntity("http://localhost:8080/email/send", mailBody, String.class);
-		
 		return "redirect:/tickets";
 		
 	}
