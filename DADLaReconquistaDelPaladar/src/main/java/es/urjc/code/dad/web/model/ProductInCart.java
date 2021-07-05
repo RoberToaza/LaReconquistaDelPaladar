@@ -1,10 +1,12 @@
 package es.urjc.code.dad.web.model;
 
+
+@SuppressWarnings("serial")
 public class ProductInCart extends Product{
 	
 	private int amount;
 	
-	public ProductInCart(String n, double p, int s, String  c, int amount) {
+	public ProductInCart(String n, double p, int s, String  c, int amount){
 		super(n,p,s,c);
 		this.amount = amount;
 	}

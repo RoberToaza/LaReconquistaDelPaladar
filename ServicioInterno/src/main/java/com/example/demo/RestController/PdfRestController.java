@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.RestController;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entities.Ticket;
+import com.example.demo.repository.TicketRepository;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
