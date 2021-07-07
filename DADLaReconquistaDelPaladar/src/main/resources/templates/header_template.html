@@ -16,27 +16,21 @@
 			</header>
 		</div>
 <div class="topnav">
-			{{^client}}
+
 			<a class="active" href="/">Home</a>
 			<a href="/product/menu">Menu</a>
 			<a href="/cart">Carrito</a>
 			<a href="/tickets">Tickets</a>
 			<a href="/contacto">Contacto</a>
+			{{^client}}
 			<a href="/client/signup">Registrarse</a>
+			{{/client}} 
+			{{#client}}
+			<a href="/client/profile">Perfil</a>			
+			{{/client}}
 			<div class="login-container">
 			
 
 			</div>
-		
-			{{/client}} 
-			{{#client}}
-			<a class="active" href="/{{idClient}}">Home</a>
-			<a href="/product/menu/{{idClient}}">Menú</a>
-			<a href="/contacto/{{idClient}}">Contacto</a>
-			<a href="/cart/{{idClient}}">Carrito</a>
-			<div class="login-container">
-			<a href="/client/info/{{idClient}}">{{firstName}}</a>
-			</div>
-			{{/client}}
 			
 		</div>

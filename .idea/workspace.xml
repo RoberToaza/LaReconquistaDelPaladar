@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="577e6bf8-be5c-44d4-b1b7-435438ce668c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/LaReconquistaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/LaReconquistaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/model/ProductInCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/model/ProductInCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/model/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/repository/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/java/es/urjc/code/dad/web/repository/TicketRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DADLaReconquistaDelPaladar/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/entities/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/repository/ClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/EmailRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/RestController/EmailRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/PdfRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/RestController/PdfRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/SoldProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/entities/SoldProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/SoldProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/repository/SoldProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/entities/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/java/com/example/demo/repository/TicketRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServicioInterno/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ServicioInterno/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1tlWAMu7Ps1iocCVoC1BH4tYE0B" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="577e6bf8-be5c-44d4-b1b7-435438ce668c" name="Default Changelist" comment="" />
+      <created>1623344011886</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623344011886</updated>
+      <workItem from="1623344014485" duration="53000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

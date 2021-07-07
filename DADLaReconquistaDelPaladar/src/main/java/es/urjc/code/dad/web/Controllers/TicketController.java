@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +29,13 @@ public class TicketController {
 		Principal currentUser = request.getUserPrincipal();
 		
 		Client currentClient = clientsRepository.findByFirstName(currentUser.getName());
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		
+		model.addAttribute("token", token.getToken());
 		
 		model.addAttribute("tickets", ticketsRepository.findByClient(currentClient));
+		
+		model.addAttribute("client", currentClient);
 		
 		return "tickets_template";
 	}

@@ -20,8 +20,9 @@
 				<b>Teléfono: </b> {{client.telephone}}<br>
 				
 			</p>
-			<form action="/">
-				<input type="submit" value="Salir">
+			<form action="/logout" method="post">
+				<input type="submit" value="Sign Out" />
+				<input type="hidden" name="_csrf" value="{{token}}"/>
 			</form>
 		</section>
 		<section>

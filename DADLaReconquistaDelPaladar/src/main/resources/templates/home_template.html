@@ -2,16 +2,16 @@
 {{>header_template}}
 	<article>
 		<section>
-			{{#client}}
-			<h1>Ya puedes empezar a realizar tu pedido {{firstName}}</h1>
-			{{/client}} 
+			
 			{{^client}}
-			<h1>Bienvenid@s</h1>
-			<form action="/logout" method="post">
-				<input type="submit" value="Sign Out" />
-				<input type="hidden" name="_csrf" value="{{token}}"/>
-			</form>
+			 <h1>Bienvenid@s</h1>
 			{{/client}}
+			
+			{{#client}}
+			 <h1>Bienvenid@s</h1>
+			 <h3>Ya puedes empezar a comprar {{client.firstName}}</h3>
+			{{/client}}
+			
 		</section>
 	</article>
 

@@ -34,7 +34,6 @@ public class PdfController {
 		
 		model.addAttribute("client", c.getName());
 		
-//		Optional<Client> client = Optional.of(clientsRepository.findByFirstName(c.getName()));
 		Optional<Ticket> auxTicket = ticketsRepository.findById(Integer.parseInt(id));
 		
 		Client client = clientsRepository.findByFirstName(c.getName());

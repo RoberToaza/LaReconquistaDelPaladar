@@ -3,6 +3,8 @@ package es.urjc.code.dad.web.Controllers;
 
 
 
+import java.security.Principal;
+
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
@@ -69,9 +71,6 @@ public class RestaurantController {
 		
 		clientsRepository.save(c1);
 		
-//		List<Product> listProductos = new ArrayList<>();
-//		listProductos.add(p1);
-//		listProductos.add(p2);
 		
 		Ticket t1 = ticketsRepository.save(new Ticket());
 		
@@ -90,54 +89,51 @@ public class RestaurantController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		model.addAttribute("token", token.getToken());
 		
-		return "home_template";
-	}
-
-	@GetMapping("/{idClient}")
-	public String showHomeWithClient(Model model, @PathVariable int idClient) {
+		Principal currentUser = request.getUserPrincipal();
+		try {
+			Client currentClient = clientsRepository.findByFirstName(currentUser.getName());
+			model.addAttribute("client", currentClient);
+		} catch(Exception e) {}
 		
-		Client c = clientsRepository.findById(idClient);
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
 		
 		return "home_template";
 	}
-	
-	@GetMapping("/contacto")
-	public String showContacto() {
 
-		return "contact_template";
-	}
-	
-	@GetMapping("/contacto/{idClient}")
-	public String showContactoWithClient(Model model, @PathVariable int idClient) {
-		
-		Client c = clientsRepository.findById(idClient);
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
-
-		return "contact_template";
-	}
-	
-//	@GetMapping("/cart/{idClient}")
-//	public String showCarrito(Model model , @PathVariable long idClient) {
-//		Client c = clientsRepository.findById(idClient);
-//
-//		List<Product> shoppingCart = c.getShoppingCar();
+//	@GetMapping("/{idClient}")
+//	public String showHomeWithClient(Model model, @PathVariable int idClient) {
 //		
-//		if(shoppingCart.isEmpty()){
-//			model.addAttribute("canBuy", false);
-//		}else {
-//			model.addAttribute("canBuy", true);
-//		}
+//		Client c = clientsRepository.findById(idClient);
 //		
 //		model.addAttribute("idClient", idClient);
 //		model.addAttribute(c);
-//		model.addAttribute("cart", shoppingCart);
 //		
-//		return "cart_template";
+//		return "home_template";
+//	}
+	
+	@GetMapping("/contacto")
+	public String showContacto(Model model, HttpServletRequest request) {
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		
+		model.addAttribute("token", token.getToken());
+		
+		try {
+			Client currentClient = clientsRepository.findByFirstName(request.getUserPrincipal().getName());
+			model.addAttribute("client", currentClient);
+		} catch(Exception e) {}
+
+		return "contact_template";
+	}
+	
+//	@GetMapping("/contacto/{idClient}")
+//	public String showContactoWithClient(Model model, @PathVariable int idClient) {
+//		
+//		Client c = clientsRepository.findById(idClient);
+//		
+//		model.addAttribute("idClient", idClient);
+//		model.addAttribute(c);
+//
+//		return "contact_template";
 //	}
 
 

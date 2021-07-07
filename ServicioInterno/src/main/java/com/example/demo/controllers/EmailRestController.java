@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controllers;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entities.Ticket;
+import com.example.demo.repositories.TicketRepository;
 import com.itextpdf.text.DocumentException;
 
 @RestController
@@ -50,7 +52,7 @@ public class EmailRestController {
 		String cName = ticket.get().getClient().getFisrtName();
 		String num = Integer.toString(ticket.get().getId());
 		
-		messageHelper.setText("Este correo fué generado automáticamente, No responda a este correo \n\n" + cName +", Su pedido con número :"+ num + "ha sido procesado con exito. \n\n Ya tu sabe\n\n");
+		messageHelper.setText("Este correo fué generado automáticamente, No responda a este correo \n\n" + cName +", Su pedido con número : "+ num + " ha sido procesado con exito. \n\n Gracias por su compra\n\n");
 		
 		emailSender.send(message);
 		
