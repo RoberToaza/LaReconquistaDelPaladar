@@ -113,58 +113,6 @@ public class CartController {
 	}
 	
 	
-	
-//	@PostMapping("/buyCart")
-//	public String buyProducts(HttpServletRequest request) {
-//		
-//		Principal currentUser = request.getUserPrincipal();
-//		Client currentClient;
-//		
-//		try {
-//			currentClient = clientsRepository.findByFirstName(currentUser.getName());
-//		} catch (Exception e) {
-//			return "redirect:/dbError";
-//		}
-//		
-//		ArrayList<ProductInCart> cart = this.getCart(request);
-//		if((cart == null) || cart.size() <= 0){
-//			return "redirect:/";
-//		}
-//		
-//		List<SoldProduct> auxL = new ArrayList<>();
-//		Ticket t = ticketsRepository.save(new Ticket());
-//		double total = 0.0;
-//		
-//		for(ProductInCart p: cart) {
-//			Product pDB = productsRepository.findByName(p.getName());
-//			
-//			pDB.subtractStock(p.getAmount());
-//			
-//			productsRepository.save(pDB);
-//			
-//			SoldProduct soldP = new SoldProduct(p.getName(), p.getPrice(), p.getAmount(), t);
-//			
-//			soldProductsRepository.save(soldP);
-//			auxL.add(soldP);
-//			total+=soldP.getPrice();
-//		}
-//		
-//		t.setProducts(auxL);
-//		t.setClient(currentClient);
-//		t.setTotal(total);
-//				
-//		ticketsRepository.save(t);
-//		
-//		System.out.println("Hola"+t.getTotal());
-//		
-//		this.emptyCart(request);
-//		
-//		System.out.println("Exito");
-//		
-//		return "redirect:/";
-//		
-//	}
-	
 	@PostMapping("/buyCartAndSendEmail")
 	public String buyProductsAndSendEmail(HttpServletRequest request) {
 		
@@ -192,7 +140,7 @@ public class CartController {
 			
 			soldProductsRepository.save(soldP);
 			auxL.add(soldP);
-			total+=soldP.getPrice();
+			total = total + (p.getAmount()*p.getPrice());
 		}
 		
 		t.setProducts(auxL);

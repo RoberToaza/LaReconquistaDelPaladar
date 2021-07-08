@@ -54,23 +54,5 @@ public class ProductController {
 		return"menu_template";
 	}
 	
-//	@GetMapping("/menu/{idClient}")
-//	public String showMenu(Model model, @PathVariable int idClient) {
-//		Client c = clientsRepository.findById(idClient);
-//		List<Product> menu = new ArrayList<>(productsRepository.findAll());
-//		List<Category> categories = new ArrayList<>(categoriesRepository.findAll());
-//		
-//		long id = c.getId();
-//		
-//		model.addAttribute("client", c);
-//		model.addAttribute("idClient", id);
-//		model.addAttribute("categories", categories);
-//		
-//		
-//		model.addAttribute("menu", menu);
-//		
-//		return"menu_template";
-//	}
-	
 
 }
