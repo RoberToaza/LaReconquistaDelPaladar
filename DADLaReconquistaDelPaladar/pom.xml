@@ -36,11 +36,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-<<<<<<< HEAD
-
-=======
-		
->>>>>>> d6dcaa2137facfe0b72160d98fee06694eeb6bb3
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
