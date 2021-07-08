@@ -1,4 +1,4 @@
-package entities;
+package com.example.demo.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	private double total;
 	
 	@OneToMany
 	private List<SoldProduct> products = new ArrayList<>();
@@ -50,6 +51,13 @@ public class Ticket {
 
 	public void setProducts(List<SoldProduct> products) {
 		this.products = products;
+	}
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 	
 

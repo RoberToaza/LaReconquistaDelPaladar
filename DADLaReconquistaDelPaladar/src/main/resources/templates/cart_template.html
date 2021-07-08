@@ -1,38 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<title>La Reconquista</title>
 <meta charset="utf-8">
-</head>
-<body>
-	{{>header_template}}
-
-	<article>
-		
-		<section>
-			{{#cart}}
-			<div>
-				<h1>{{name}}</h1>
-				<form action="/product/delete/{{idClient}}/{{name}}" method="post">
+{{>header_template}}
+<article>
+	<section>
+		{{#cart}}
+		<div>
+			<h1>{{name}}</h1>
+			<h5>{{amount}}</h5>
+			<form action="/deleteFromCart/{{-index}}" method="post">
 				<input type="submit" value="Eliminar">
-				</form>
-				
-				
-			</div>	
-			{{/cart}}
-			{{#canBuy}}
-			<form action="/product/buy/{{idClient}}" method="post">
-				<input type="submit" value="Comprar">
-				</form>
-			{{/canBuy}}
-			{{^cart}}
-			<div>
-				<h1>Carrito vacío</h1>
-			</div>	
-			{{/cart}}
-		</section>
-	</article>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 
-	<footer> </footer>
+
+		</div>
+		{{/cart}}
+		 <p>
+		 	<b>Total: </b> {{total}}<br>
+		 </p>
+		 <form action="/buyCartAndSendEmail" method="post">
+				<input type="submit" value="Comprar">
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+				</form>
+		 {{^cart}}
+		<div>
+			<h1>Carrito vacío</h1>
+			
+		</div>
+		{{/cart}}
+
+	</section>
+
+</article>
+
+
+<footer> </footer>
 </body>
 </html>

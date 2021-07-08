@@ -1,6 +1,11 @@
 package es.urjc.code.dad.web.Controllers;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +40,11 @@ public class ClientController {
 	}
 	
 	@GetMapping("/signup")
-	public String newClient(Model model) {
+	public String newClient(Model model, HttpServletRequest request) {
 		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		
+		model.addAttribute("token", token.getToken());
 		return "signup_template";
 	}
 	
@@ -50,27 +58,27 @@ public class ClientController {
 		model.addAttribute("client", newC);
 		
 		
-		long id = newC.getId();
+		int id = newC.getId();
 		
 		model.addAttribute("idClient", id);
 		
-		return "login_template";
+		return "redirect:/login";
 	}
 	
-//	@GetMapping("/info/{idClient}")
-//	public String newClient(Model model, @PathVariable long idClient) {
-//		Client c = clientsRepository.findById(idClient);
-//		List<Product> shoppingCart = c.getShoppingCar();
-//		List<Ticket> tickets = c.getTickets();
-//		
-//		long id = c.getId();
-//		
-//		model.addAttribute("tickets", tickets);
-//		model.addAttribute("client", c);
-//		model.addAttribute("idClient", id);
-//		model.addAttribute("cart",shoppingCart);
-//		
-//		return "info_template";
-//	}
+	@RequestMapping("/profile")
+	public String showTickets(Model model, HttpServletRequest request) {
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		
+		model.addAttribute("token", token.getToken());
+		
+		Principal currentUser = request.getUserPrincipal();
+		
+		Client currentClient = clientsRepository.findByFirstName(currentUser.getName());
+		
+		model.addAttribute("client", currentClient);
+		
+		return "profile_template";
+	}
 
 }

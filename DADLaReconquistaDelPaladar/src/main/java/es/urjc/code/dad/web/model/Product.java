@@ -1,7 +1,5 @@
 package es.urjc.code.dad.web.model;
 
-//import java.util.Map;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

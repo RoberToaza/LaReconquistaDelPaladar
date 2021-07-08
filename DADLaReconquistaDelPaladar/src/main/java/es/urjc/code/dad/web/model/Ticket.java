@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -16,25 +17,27 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	private double total = 0.0;
 	
-//	@ManyToOne
-//	@JsonIgnore
-//	private Client client;
 
 	@OneToMany
 	private List<SoldProduct> products = new ArrayList<>();
 	
+	@ManyToOne
+	private Client client;
+	
 	public Ticket() {}
 	
-	public Ticket(List<SoldProduct> l) {
-		super();
-		this.products = new ArrayList<>(l);
+	public Ticket(Client c, List<SoldProduct> l) {
+		this.client = c;
+		
+		for(SoldProduct sP: l) {
+			this.products.add(sP);
+			this.total += sP.getPrice();
+		}
+		
 	}
 	
-//	public Ticket(Client c, List<Product> l) {
-//		this.client = c;
-//		this.products = new ArrayList<>(l);
-//	}
 
 	public int getId() {
 		return id;
@@ -45,16 +48,28 @@ public class Ticket {
 	}
 
 	public void setProducts(List<SoldProduct> products) {
-		this.products = products;
+		this.total = 0;
+		
+		for(SoldProduct sP: products) {
+			this.products.add(sP);
+			this.total += sP.getPrice();
+		}
 	}
 	
-//	public Client getClient() {
-//		return client;
-//	}
-//
-//	public void setClient(Client client) {
-//		this.client = client;
-//	}
-	
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 }
