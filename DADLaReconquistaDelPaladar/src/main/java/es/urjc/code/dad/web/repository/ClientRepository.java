@@ -7,13 +7,13 @@ import es.urjc.code.dad.web.model.Client;
 
 import java.util.List;
 
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface ClientRepository extends JpaRepository<Client, Integer> {
 	
 	List<Client> findByLastName(String lastName);
 	
 	Client findByFirstName(String firstName);
 	Client findByFirstNameAndPasswordHash(String firstName, String password);
 	
-	Client findById(long id);
+	Client findById(int id);
 
 }

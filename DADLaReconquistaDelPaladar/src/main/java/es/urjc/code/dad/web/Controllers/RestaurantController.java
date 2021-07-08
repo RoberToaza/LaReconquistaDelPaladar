@@ -3,9 +3,13 @@ package es.urjc.code.dad.web.Controllers;
 
 
 
+import java.security.Principal;
+
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,9 +71,6 @@ public class RestaurantController {
 		
 		clientsRepository.save(c1);
 		
-//		List<Product> listProductos = new ArrayList<>();
-//		listProductos.add(p1);
-//		listProductos.add(p2);
 		
 		Ticket t1 = ticketsRepository.save(new Ticket());
 		
@@ -83,57 +84,36 @@ public class RestaurantController {
 	}
 	
 	@GetMapping("/")
-	public String showHome(Model model) {
+	public String showHome(Model model, HttpServletRequest request) {
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		model.addAttribute("token", token.getToken());
+		
+		Principal currentUser = request.getUserPrincipal();
+		try {
+			Client currentClient = clientsRepository.findByFirstName(currentUser.getName());
+			model.addAttribute("client", currentClient);
+		} catch(Exception e) {}
+		
 		
 		return "home_template";
 	}
 
-	@GetMapping("/{idClient}")
-	public String showHomeWithClient(Model model, @PathVariable long idClient) {
-		
-		Client c = clientsRepository.findById(idClient);
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
-		
-		return "home_template";
-	}
 	
 	@GetMapping("/contacto")
-	public String showContacto() {
+	public String showContacto(Model model, HttpServletRequest request) {
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		
+		model.addAttribute("token", token.getToken());
+		
+		try {
+			Client currentClient = clientsRepository.findByFirstName(request.getUserPrincipal().getName());
+			model.addAttribute("client", currentClient);
+		} catch(Exception e) {}
 
 		return "contact_template";
 	}
-	
-	@GetMapping("/contacto/{idClient}")
-	public String showContactoWithClient(Model model, @PathVariable long idClient) {
-		
-		Client c = clientsRepository.findById(idClient);
-		
-		model.addAttribute("idClient", idClient);
-		model.addAttribute(c);
-
-		return "contact_template";
-	}
-	
-//	@GetMapping("/cart/{idClient}")
-//	public String showCarrito(Model model , @PathVariable long idClient) {
-//		Client c = clientsRepository.findById(idClient);
-//
-//		List<Product> shoppingCart = c.getShoppingCar();
-//		
-//		if(shoppingCart.isEmpty()){
-//			model.addAttribute("canBuy", false);
-//		}else {
-//			model.addAttribute("canBuy", true);
-//		}
-//		
-//		model.addAttribute("idClient", idClient);
-//		model.addAttribute(c);
-//		model.addAttribute("cart", shoppingCart);
-//		
-//		return "cart_template";
-//	}
 
 
 }

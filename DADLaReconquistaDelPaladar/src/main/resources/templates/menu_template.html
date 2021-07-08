@@ -6,7 +6,7 @@
 			<section>
 				{{#menu}}
 				<div>
-					<img src="/image/{{imageName}}" height="200"></img>
+					<img src="/images/{{imageName}}.jpg" height="200"></img>
 
 					<h3>{{name}}</h3>
 					<h3>{{stock}}</h3>
@@ -14,13 +14,8 @@
 					<form action="/addToCart/{{name}}"
 						method="post">
 						<input type="submit" value="Añadir al carrito">
+						<input type="hidden" name="_csrf" value="{{token}}"/>
 					</form>
-					{{#client}}
-					<form action="/product/addToCart/{{idClient}}/{{name}}"
-						method="post">
-						<input type="submit" value="Añadir al carrito">
-					</form>
-					{{/client}}
 				</div>
 				{{/menu}}
 			</section>
@@ -29,16 +24,11 @@
 	<div class="grid-item grid-aside">
 		<aside>
 			<h2>Por paises:</h2>
-			{{#client}} {{#categories}}
-			<ul>
-				<li><a href="/category/{{name}}/{{idClient}}">{{name}}</a></li>
-			</ul>
-
-			{{/categories}} {{/client}} {{^client}} {{#categories}}
+			{{#categories}}
 			<ul>
 				<li><a href="/category/{{name}}">{{name}}</a></li>
 			</ul>
-			{{/categories}} {{/client}}
+			{{/categories}}
 
 		</aside>
 	</div>

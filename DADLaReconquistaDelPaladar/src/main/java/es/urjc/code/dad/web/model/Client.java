@@ -3,14 +3,12 @@ package es.urjc.code.dad.web.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -35,14 +33,6 @@ public class Client {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles = new ArrayList<String>();
 	
-	
-	public List<String> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
 
 	protected Client() {}
 	
@@ -55,7 +45,7 @@ public class Client {
 		this.telephone = c.getTelephone();
 		this.address = c.getAddress();
 		this.passwordHash = new BCryptPasswordEncoder().encode(c.getPasswordHash());
-		roles.add("CLIENT");
+		roles.add("ADMIN");
 		
 	}
 
@@ -70,7 +60,7 @@ public class Client {
 		this.telephone = telephone;
 		this.address = address;
 		this.passwordHash = new BCryptPasswordEncoder().encode(password);
-		roles.add("CLIENT");
+		roles.add("ADMIN");
 	}
 	
 	public int getId() {
@@ -170,6 +160,14 @@ public class Client {
 
 	public void setPasswordHash(String password) {
 		this.passwordHash = password;
+	}
+	
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 
 	
