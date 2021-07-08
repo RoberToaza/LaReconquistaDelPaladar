@@ -99,16 +99,6 @@ public class RestaurantController {
 		return "home_template";
 	}
 
-//	@GetMapping("/{idClient}")
-//	public String showHomeWithClient(Model model, @PathVariable int idClient) {
-//		
-//		Client c = clientsRepository.findById(idClient);
-//		
-//		model.addAttribute("idClient", idClient);
-//		model.addAttribute(c);
-//		
-//		return "home_template";
-//	}
 	
 	@GetMapping("/contacto")
 	public String showContacto(Model model, HttpServletRequest request) {
@@ -124,17 +114,6 @@ public class RestaurantController {
 
 		return "contact_template";
 	}
-	
-//	@GetMapping("/contacto/{idClient}")
-//	public String showContactoWithClient(Model model, @PathVariable int idClient) {
-//		
-//		Client c = clientsRepository.findById(idClient);
-//		
-//		model.addAttribute("idClient", idClient);
-//		model.addAttribute(c);
-//
-//		return "contact_template";
-//	}
 
 
 }
