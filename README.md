@@ -156,6 +156,8 @@ $ sudo apt-get install openjdk-8-jdk
 
 ## Fase 4 <a name="id4"></a> ##
 
+### Vídeo despliegue ###
+
 [![LaReconquista](./picturesReadMe/p4/info_P.png)](https://youtu.be/iFM8ulg1cVI)
 
 ### Diagrama de Clases ###
