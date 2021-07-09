@@ -40,7 +40,7 @@ public class PdfController {
 		Ticket ticket = auxTicket.get();
 		if(client.getFisrtName() == ticket.getClient().getFisrtName()) {
 			RestTemplate restTemplate = new RestTemplate();
-			String url = "http://127.0.0.1:8080/getPdf/" + id;
+			String url = "http://thishaproxy:8088/getPdf/" + id;
 			ResponseEntity<byte[]> response = restTemplate.postForEntity(url, null, byte[].class);
 			return response;
 		}

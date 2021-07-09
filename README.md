@@ -4,6 +4,7 @@
 
 1. [Fase 1](#id1)
 2. [Fase 2](#id2)
+3. [Fase 3](#id3)
 
 
 ## Fase 1 <a name="id1"><a> ##
@@ -70,4 +71,137 @@ Lo único que diferencia a estos dos es que en uno puedes hacer login en la barr
 #### Registrarse como usuario (Publico) ####
 ![SignUp](./picturesReadMe/signUp.png)
 
+
+## Fase 3 <a name="id3"></a> ##
+
+Nueva Navegación haciendo una verdadera diferencia entre el usuario podrá acceder de forma pública (sin login) y después de hacer login
+
+### Diagrama de nueva navegación ###
+![NuevaNavegacion](./picturesReadMe/p4/nuevaNavegacion.jpeg)
+
+
+#### Home Principal (Público) ####
+![Home](./picturesReadMe/p4/Home.png)
+
+#### Log In (Público) ####
+![LogIn](./picturesReadMe/p4/login.png)
+
+Esta pantalla aparecerá siemrpe que se quiera acceder a alguna parte privada, y después de hacer log in, se redireccionará a donde quería acceder en una primera instancia.
+
+#### Sign Up (Público) ####
+![SignUp](./picturesReadMe/p4/signup.png)
+
+Esta solo se mostrará desde las pantallas públicas ya que luego su acceso desaparecerá.
+
+#### Contacto (Público) ####
+![Contacto](./picturesReadMe/p4/contacto.png)
+
+#### Menú (Privado) ####
+![Menu](./picturesReadMe/p4/menu_P.png)
+
+#### Carrito (Privado) ####
+![Cart](./picturesReadMe/p4/carrito_P.png)
+
+#### Tickets (Privado) ####
+![Tickets](./picturesReadMe/p4/tickets_P.png)
+
+#### Perfil (Privado) ####
+![Info](./picturesReadMe/p4/info_P.png)
+
+### Diagrama de Clases ###
+![p1](./picturesReadMe/p4/Parte1.jpeg)
+![p2](./picturesReadMe/p4/sinCache2.jpeg)
+
+
+##### Servicio Interno #####
+
+![SI](./picturesReadMe/p4/serviciointerno.jpeg)
+
+
+
+### Despliegue ####
+
+Para el despliegue de la aplicación, se necesitará tener instalado docker en su máquina así como java.
+
+Primero arrancaremos la base de datos con la siguiente línea
+
+
+
+Para comprobar su versión de java 
+
+```
+$ docker run --rm -e MYSQL_ROOT_PASSWORD=pass -e  MYSQL_DATABASE=lareconquista -p 3306:3306 -d mysql
+```
+
+Una vez hecho este paso nos colocaremos en la carpeta target tanto del servicio interno como de la página web y abriremos un terminal ahí ejecutaremos la siguiente linea
+
+```
+$ java -jar "nombredel jar"
+```
+
+Si no ejecuta comprobaremos la versión de java:
+
+```
+$ java --version
+```
+
+Si no funciona hay que instalar mínimo la versión 8 de java:
+
+```
+$ sudo add-apt-repository ppa:openjdk-r/ppa
+$ sudo apt-get update
+$ sudo apt-get install openjdk-8-jdk
+```
+
+## Fase 4 <a name="id4"></a> ##
+
+[![LaReconquista](./picturesReadMe/p4/info_P.png)](https://youtu.be/iFM8ulg1cVI)
+
+### Diagrama de Clases ###
+
+El cambio mas significativo ha sido que ahora tenemos un controlador para la caché
+
+![p1](./picturesReadMe/p4/Parte1.jpeg)
+![p2](./picturesReadMe/p4/Parte2.jpeg)
+
+
+
+##### Servicio Interno #####
+
+![SI](./picturesReadMe/p4/serviciointerno.jpeg)
+
+### Despligue ###
+
+La aplicación seguirá los siguientes esquémas
+
+![HAProxy](./picturesReadMe/p4/haproxy.jpeg)
+
+y la siguiente comunicación:
+
+![DIagramita](./picturesReadMe/p4/Comunicacion.jpeg)
+
+
+Para desplegar el servicio tenemos que descargarnos el zip e ir a la carpeta docker donde abriremos un terminal e introduciremos la siguiente línea
+
+```
+$ sudo docker-compose up
+```
+
+Para mostrar las imagenes tenemos el mandato
+
+```
+$ sudo docker images
+```
+
+Para los ids:
+
+```
+$ sudo docker ps
+```
+
+Y para detener un proceso usaremos:
+
+```
+$ sudo docker stop [id]
+```
 
