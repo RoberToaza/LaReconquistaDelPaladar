@@ -5,6 +5,7 @@
 1. [Fase 1](#id1)
 2. [Fase 2](#id2)
 3. [Fase 3](#id3)
+4. [Fase 4](#id4)
 
 
 ## Fase 1 <a name="id1"><a> ##
@@ -181,7 +182,7 @@ y la siguiente comunicación:
 ![DIagramita](./picturesReadMe/p4/Comunicacion.jpeg)
 
 
-Para desplegar el servicio tenemos que descargarnos el zip e ir a la carpeta docker donde abriremos un terminal e introduciremos la siguiente línea
+Para desplegar el servicio tenemos que descargarnos el zip descomprimirlo e ir a la carpeta docker donde abriremos un terminal e introduciremos la siguiente línea
 
 ```
 $ sudo docker-compose up
