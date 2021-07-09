@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 public class Ticket {
@@ -20,9 +22,12 @@ public class Ticket {
 	private double total = 0.0;
 	
 
+	@JsonBackReference
 	@OneToMany
 	private List<SoldProduct> products = new ArrayList<>();
 	
+
+	@JsonBackReference
 	@ManyToOne
 	private Client client;
 	

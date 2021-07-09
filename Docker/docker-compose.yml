@@ -1,0 +1,80 @@
+version: '3'
+
+services: 
+    thishaproxy:
+        build: ./Haproxy
+        ports:
+            - 443:443
+        networks:
+            new-network:
+                aliases: 
+                    - thishaproxy
+        depends_on: 
+            - web1
+            - api1
+            - api2
+            - db
+
+    web1:
+        build: ./Web
+        ports: 
+            - 8443:8443
+        environment: 
+            - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/lareconquista
+            - SPRING_JPA_HIBERNATE_DDL-AUTO=create
+            - SERVER_PORT=8443
+        links:
+            - db
+        depends_on:
+            - db
+        networks: 
+            - new-network
+        restart: unless-stopped
+
+
+    api1:
+        build: ./Api
+        ports:
+            - 8088:8088
+        environment: 
+            - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/lareconquista
+            - SERVER_PORT=8088
+        links:
+            - db
+        depends_on: 
+            - db
+        networks: 
+            - new-network
+        restart: unless-stopped
+
+    api2:
+        build: ./Api
+        ports:
+            - 8089:8089
+        environment: 
+            - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/lareconquista
+            - SERVER_PORT=8089
+        links:
+            - db
+        depends_on: 
+            - db
+        networks: 
+            - new-network
+        restart: unless-stopped
+
+    db:
+        image: mysql:5.6.48
+        restart: always
+
+        environment: 
+            MYSQL_DATABASE: 'lareconquista'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            
+        ports:
+            - 3306:3306
+        networks: 
+            - new-network
+
+networks: 
+    new-network:
+        driver: bridge

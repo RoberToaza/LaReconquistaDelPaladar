@@ -155,7 +155,7 @@ public class CartController {
 		//Servicio Principal
 		String email = currentClient.getMail();
 		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://127.0.0.1:8080/sendEmail/"+ t.getId();
+		String url = "http://thishaproxy:8088/sendEmail/"+ t.getId();
 		ResponseEntity<Boolean> response = restTemplate.postForEntity(url,email, Boolean.class);
 		
 		return "redirect:/tickets";
